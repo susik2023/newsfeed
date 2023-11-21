@@ -19,6 +19,6 @@
         - 사용자가 다른 사용자의 게시물을 한 눈에 볼 수 있는 뉴스 피드 페이지가 있어야 합니다.
 
 ## ERD
-![new-feed](https://github.com/F12-DevTools/news-feed-project/assets/40788498/2cc3aea1-47f3-4ea1-8035-1255f420e010)
+![new-feed (1)](https://github.com/F12-DevTools/news-feed-project/assets/40788498/6ec10294-f697-4f09-803a-871e40049e85)
 
 ## API 명세서
