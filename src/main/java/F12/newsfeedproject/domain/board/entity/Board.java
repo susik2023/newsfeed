@@ -28,7 +28,4 @@ public class Board {
     @Column(nullable = false)
     private String boardContent;
 
-    @Column(nullable = false)
-    private int boardLikeCount;
-
 }

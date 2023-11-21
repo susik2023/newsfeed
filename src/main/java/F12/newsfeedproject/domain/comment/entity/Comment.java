@@ -25,7 +25,4 @@ public class Comment {
     @Column(nullable = false)
     private String commentContent;
 
-    @Column(nullable = false)
-    private int commentLikeCount;
-
 }
