@@ -21,6 +21,11 @@ public class ApiFollowService {
     private final UserService userService;
     private final FollowService followService;
 
+    /**
+     * 팔로우 하기
+     * @param username
+     * @param followerId
+     */
     public void followUser(String username, Long followerId) {
         Optional<User> following = userService.findByUserName(username);
         if (following.isEmpty()) {
@@ -41,6 +46,11 @@ public class ApiFollowService {
 
     }
 
+    /**
+     * 언 팔로우 하기
+     * @param username
+     * @param followerId
+     */
     public void unFollowUser(String username, Long followerId) {
         Optional<User> following = userService.findByUserName(username);
         if (following.isEmpty()) {
