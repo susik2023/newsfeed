@@ -19,7 +19,8 @@ public enum ErrorCode {
     ALREADY_EXIST_MEMBER_EXCEPTION(401, "이미 존재하는 회원입니다."),
 
     // follow
-    NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다"),
+    NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다."),
+    DUPLICATED_FOLLOW_EXCEPTION(401, "팔로우 내역이 이미 존재합니다.")
 
     ;
 
