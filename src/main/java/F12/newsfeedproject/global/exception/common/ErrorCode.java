@@ -17,7 +17,11 @@ public enum ErrorCode {
   NOT_FOUND_MEMBER_EXCEPTION(401, "회원 정보를 찾을 수 없습니다."),
   FAILED_AUTHENTICATION_EXCEPTION(401, "인증에 실패하였습니다."),
   ALREADY_EXIST_USER_NAME_EXCEPTION(409, "이미 존재하는 이름입니다."),
-  ALREADY_EXIST_EMAIL_EXCEPTION(409, "이미 존재하는 이메일입니다.");
+  ALREADY_EXIST_EMAIL_EXCEPTION(409, "이미 존재하는 이메일입니다."),
+
+  // follow
+  NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다."),
+  DUPLICATED_FOLLOW_EXCEPTION(401, "팔로우 내역이 이미 존재합니다.");
 
   private final int status;
 

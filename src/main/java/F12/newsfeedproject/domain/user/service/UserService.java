@@ -16,15 +16,15 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  public User findByUserId(Long userId) {
-    return userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
-  }
-
   public Optional<User> findByUserName(String userName) {
     return userRepository.findByUserName(userName);
   }
 
   public Optional<User> findByUserEmail(String userEmail) {
     return userRepository.findByUserEmail(userEmail);
+  }
+  
+  public Optional<User> findByUserId(Long userId) {
+    return userRepository.findById(userId);
   }
 }
