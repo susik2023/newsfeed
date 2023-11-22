@@ -7,6 +7,7 @@ import F12.newsfeedproject.domain.user.service.UserService;
 import F12.newsfeedproject.global.exception.common.ErrorCode;
 import F12.newsfeedproject.global.exception.member.AlreadyUserExistException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,10 +16,12 @@ public class ApiUserService {
 
   private final UserService userService;
 
+  private final PasswordEncoder passwordEncoder;
+
   public UserSignupResponseDTO signupUser(UserSignupRequestDTO userSignupRequestDTO) {
 
     validateDuplicateUser(userSignupRequestDTO);
-    User savedUser = userService.saveUser(userSignupRequestDTO.toEntity());
+    User savedUser = userService.saveUser(userSignupRequestDTO.toEntity(passwordEncoder));
 
     return UserSignupResponseDTO.from(savedUser);
   }
