@@ -2,6 +2,7 @@ package F12.newsfeedproject.domain.user.service;
 
 import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.domain.user.repository.UserRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findByUserId(Long userId) {
-        return userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+    public Optional<User> findByUserId(Long userId) {
+        return userRepository.findById(userId);
     }
+
+    public Optional<User> findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
 }
