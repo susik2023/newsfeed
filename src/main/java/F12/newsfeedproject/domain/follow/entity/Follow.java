@@ -26,11 +26,11 @@ public class Follow {
     private Long followId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "fllower_id", nullable = false)
     private User follower;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "following_id", nullable = false)
     private User following;
 
 }
