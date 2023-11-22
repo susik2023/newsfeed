@@ -18,23 +18,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long userId;
 
-    @Column(nullable = false)
-    private String userName;
+  @Column(nullable = false)
+  private String userName;
 
-    @Column(nullable = false)
-    private String userPassword;
+  @Column(nullable = false)
+  private String userPassword;
 
-    @Column(nullable = false)
-    private String userEmail;
+  @Column(nullable = false)
+  private String userEmail;
 
-    @Column(nullable = false)
-    private String userImageUrl;
+  @Column(nullable = false)
+  private String userImageUrl;
 
-    @Column(nullable = false)
-    private String introduce;
+  @Column(nullable = false)
+  private String userIntroduce;
 
 }

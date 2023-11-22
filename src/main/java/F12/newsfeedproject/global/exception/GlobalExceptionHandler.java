@@ -29,6 +29,7 @@ public class GlobalExceptionHandler {
                 .map(FieldError::getDefaultMessage)
                 .collect(Collectors.toList());
 
+        // TODO 어떤 필드가 잘못됬는지 알려주기
         ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.BAD_REQUEST, errorMessages);
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
