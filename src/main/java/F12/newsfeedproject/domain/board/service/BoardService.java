@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardRepository boardRepository;
+  private final BoardRepository boardRepository;
 
-    public Board saveBoard(Board board) {
-        return boardRepository.save(board);
-    }
+  public Board saveBoard(Board board) {
+    return boardRepository.save(board);
+  }
 
-    public Board findByBoardId(Long boardId) {
-        return boardRepository.findById(boardId).orElseThrow(IllegalArgumentException::new);
-    }
+  public Board findByBoardId(Long boardId) {
+    return boardRepository.findById(boardId).orElseThrow(IllegalArgumentException::new);
+  }
 
-    public void deleteBoard(Long boardId) {
-        boardRepository.deleteById(boardId);
-    }
+  public void deleteBoard(Long boardId) {
+    boardRepository.deleteById(boardId);
+  }
 }

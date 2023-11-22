@@ -1,5 +1,7 @@
 package F12.newsfeedproject.domain.board.entity;
 
+import F12.newsfeedproject.api.board.dto.BoardRequestDto;
+import F12.newsfeedproject.domain.common.Timestamped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,16 +18,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board {
+public class Board extends Timestamped {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long boardId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long boardId;
 
-    @Column(nullable = false)
-    private String boardTitle;
+  @Column(nullable = false)
+  private String boardTitle;
 
-    @Column(nullable = false)
-    private String boardContent;
+  @Column(nullable = false)
+  private String boardContent;
 
+  public Board(BoardRequestDto requestDto) {
+    this.boardTitle = requestDto.getBoardTitle();
+    this.boardContent = requestDto.getBoardContent();
+  }
 }
