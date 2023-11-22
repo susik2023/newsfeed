@@ -1,6 +1,7 @@
 package F12.newsfeedproject.api.user.controller;
 
-import F12.newsfeedproject.api.user.dto.UserSignupDTO;
+import F12.newsfeedproject.api.user.dto.request.UserSignupRequestDTO;
+import F12.newsfeedproject.api.user.dto.response.UserSignupResponseDTO;
 import F12.newsfeedproject.api.user.service.ApiUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class ApiUserController {
 
-    private final ApiUserService apiUserService;
+  private final ApiUserService apiUserService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<UserSignupDTO.Response> signupUser(
-            @Valid @RequestBody UserSignupDTO.Request userSignupRequestDTO) {
+  @PostMapping("/signup")
+  public ResponseEntity<UserSignupResponseDTO> signupUser(
+      @Valid @RequestBody UserSignupRequestDTO userSignupRequestDTO) {
 
-        UserSignupDTO.Response userSignupResponseDTO = apiUserService.signupUser(userSignupRequestDTO);
+    UserSignupResponseDTO userSignupResponseDTO = apiUserService.signupUser(userSignupRequestDTO);
 
-        return ResponseEntity.ok(userSignupResponseDTO);
-    }
+    return ResponseEntity.ok(userSignupResponseDTO);
+  }
 }
