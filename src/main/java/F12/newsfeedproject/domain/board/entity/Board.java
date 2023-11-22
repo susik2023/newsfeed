@@ -30,8 +30,4 @@ public class Board extends Timestamped {
   @Column(nullable = false)
   private String boardContent;
 
-  public Board(BoardRequestDto requestDto) {
-    this.boardTitle = requestDto.getBoardTitle();
-    this.boardContent = requestDto.getBoardContent();
-  }
 }

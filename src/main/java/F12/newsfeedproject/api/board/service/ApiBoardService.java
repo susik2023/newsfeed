@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ApiBoardService {
 
-    private final BoardService boardService;
+  private final BoardService boardService;
 
-    // 게시글 작성
-    public BoardResponseDto saveBoard(BoardRequestDto requestDto) {
+  // 게시글 작성
+  public BoardResponseDto saveBoard(BoardRequestDto requestDto) {
+    Board savedBoard = boardService.saveBoard(requestDto.toEntity());
+    return new BoardResponseDto(savedBoard);
+  }
 
-
-        Board savedBoard = boardService.saveBoard(requestDto.toEntity());
-
-        return new BoardResponseDto(savedBoard);
-    }
-
+  public BoardResponseDto getBoard(Long boardId) {
+    Board getBoard = boardService.findByBoardId(boardId);
+    return new BoardResponseDto(getBoard);
+  }
 }
