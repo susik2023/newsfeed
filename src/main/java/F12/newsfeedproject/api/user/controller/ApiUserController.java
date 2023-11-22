@@ -1,7 +1,7 @@
 package F12.newsfeedproject.api.user.controller;
 
 import F12.newsfeedproject.api.user.dto.UserSignupDTO;
-import F12.newsfeedproject.api.user.service.ApiUserService;
+import F12.newsfeedproject.api.follow.service.ApiUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

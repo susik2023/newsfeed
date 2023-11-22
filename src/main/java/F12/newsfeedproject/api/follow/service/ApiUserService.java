@@ -1,4 +1,4 @@
-package F12.newsfeedproject.api.user.service;
+package F12.newsfeedproject.api.follow.service;
 
 import F12.newsfeedproject.api.user.dto.UserSignupDTO;
 import F12.newsfeedproject.domain.user.entity.User;
