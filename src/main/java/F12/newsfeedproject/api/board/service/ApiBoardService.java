@@ -2,10 +2,13 @@ package F12.newsfeedproject.api.board.service;
 
 import F12.newsfeedproject.api.board.dto.BoardRequestDto;
 import F12.newsfeedproject.api.board.dto.BoardResponseDto;
+import F12.newsfeedproject.api.board.dto.BoardUpdateRequestDto;
 import F12.newsfeedproject.domain.board.entity.Board;
 import F12.newsfeedproject.domain.board.service.BoardService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +22,28 @@ public class ApiBoardService {
     return new BoardResponseDto(savedBoard);
   }
 
+  // 게시글 단건 조회
   public BoardResponseDto getBoard(Long boardId) {
     Board getBoard = boardService.findByBoardId(boardId);
     return new BoardResponseDto(getBoard);
+  }
+
+  // 게시글 전체 목록 조회
+  public List<BoardResponseDto> getBoards() {
+    List<Board> boardList = boardService.getBoards();
+    return boardList.stream().map(BoardResponseDto::new).toList();
+  }
+
+
+  // 게시글 수정
+  @Transactional
+  public BoardResponseDto updateBoard(Long boardId, BoardUpdateRequestDto requestDto) {
+    Board updateBoard = boardService.updateBoard(boardId, requestDto);
+    return new BoardResponseDto(updateBoard);
+  }
+
+  // 게시글 삭제
+  public void deleteBoard(Long boardId) {
+    boardService.deleteBoard(boardId);
   }
 }

@@ -1,6 +1,6 @@
 package F12.newsfeedproject.domain.board.entity;
 
-import F12.newsfeedproject.api.board.dto.BoardRequestDto;
+import F12.newsfeedproject.api.board.dto.BoardUpdateRequestDto;
 import F12.newsfeedproject.domain.common.Timestamped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,4 +30,8 @@ public class Board extends Timestamped {
   @Column(nullable = false)
   private String boardContent;
 
+  public void update(BoardUpdateRequestDto requestDto) {
+    this.boardTitle = requestDto.getBoardTitle();
+    this.boardContent = requestDto.getBoardContent();
+  }
 }
