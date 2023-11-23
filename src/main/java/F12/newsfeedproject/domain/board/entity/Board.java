@@ -1,7 +1,7 @@
 package F12.newsfeedproject.domain.board.entity;
 
-import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.domain.common.Timestamped;
+import F12.newsfeedproject.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

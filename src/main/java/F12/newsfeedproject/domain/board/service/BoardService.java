@@ -36,5 +36,10 @@ public class BoardService {
     boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
     boardRepository.deleteById(boardId);
   }
+
+  public Long getAuthorIdByBoardId(Long boardId) {
+    Board board = boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
+    return board.getUser().getUserId();
+  }
 }
 
