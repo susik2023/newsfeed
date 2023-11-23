@@ -69,5 +69,14 @@ public class ApiUserController {
     return ResponseEntity.ok("요청 성공");
   }
 
+  @GetMapping("/logout")
+  public ResponseEntity<?> logoutUser(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+    User findUser = userDetails.getUser();
+    apiUserService.logoutUser(findUser.getUserId());
+
+    return ResponseEntity.ok("요청 성공");
+  }
+
 
 }

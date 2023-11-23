@@ -54,4 +54,8 @@ public class User {
     userImageUrl = modifyUser.getUserImageUrl();
     userIntroduce = modifyUser.getUserIntroduce();
   }
+
+  public void logout() {
+    refreshToken = null;
+  }
 }
