@@ -27,8 +27,14 @@ public class BoardService {
     return boardRepository.findAllByOrderByCreatedDateDesc();
   }
 
+  @Transactional
+  public void updateBoard(Board updateBoard, Board board) {
+    updateBoard.update(board);
+  }
+
   public void deleteBoard(Long boardId) {
     boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
     boardRepository.deleteById(boardId);
   }
 }
+

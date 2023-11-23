@@ -30,4 +30,9 @@ public class Board extends Timestamped {
 
   @Column(nullable = false)
   private String boardContent;
+
+  public void update(Board updateBoard) {
+    boardTitle = updateBoard.getBoardTitle();
+    boardContent = updateBoard.getBoardContent();
+  }
 }

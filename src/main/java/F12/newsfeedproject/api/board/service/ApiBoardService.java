@@ -39,8 +39,7 @@ public class ApiBoardService {
   @Transactional
   public BoardResponseDto updateBoard(Long boardId, BoardUpdateRequestDto requestDto) {
     Board updateBoard = boardService.findByBoardId(boardId);
-    updateBoard.setBoardTitle(requestDto.boardTitle());
-    updateBoard.setBoardContent(requestDto.boardContent());
+    boardService.updateBoard(updateBoard, requestDto.toEntity());
     return BoardResponseDto.from(updateBoard);
   }
 
