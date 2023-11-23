@@ -35,4 +35,8 @@ public class UserService {
     User findUser = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     findUser.updateRefreshToken(refreshToken);
   }
+
+  public void updateUser(User findUser, User modifyUser) {
+    findUser.updateUser(modifyUser);
+  }
 }
