@@ -24,40 +24,40 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long commentId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long commentId;
 
-    @Column(nullable = false)
-    private String commentContent;
+  @Column(nullable = false)
+  private String commentContent;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "board_id")
-    private Board board;
+  @ManyToOne
+  @JoinColumn(name = "board_id")
+  private Board board;
 
-    @Column
-    private LocalDateTime createDate;
+  @Column
+  private LocalDateTime createDate;
 
-    public Comment(CommentRequestDTO dto) {
-        this.commentContent = dto.getCommentContent();
-        this.createDate = LocalDateTime.now();
-    }
+  public Comment(CommentRequestDTO dto) {
+    this.commentContent = dto.getCommentContent();
+    this.createDate = LocalDateTime.now();
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
 //    public void setBoard(Board board) {
 //        this.board = board;
 //        board.getComments().add(this);
 //    }
 
-    // 서비스 메서드
-    public void setCommentContent(String commentContent) {
-        this.commentContent = commentContent;
-    }
+  // 서비스 메서드
+  public void setCommentContent(String commentContent) {
+    this.commentContent = commentContent;
+  }
 }

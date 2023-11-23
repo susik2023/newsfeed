@@ -26,8 +26,8 @@ public enum ErrorCode {
 
 
   // Comment
-  REJECTED_EXCUTION_EXCEPTION(401,"작성자만 수정할 수 있습니다."),
-  NOT_FOUND_COMMENT_EXCEPTION(401,"존재하지 않는 댓글 ID 입니다.");
+  REJECTED_EXCUTION_EXCEPTION(401, "작성자만 수정할 수 있습니다."),
+  NOT_FOUND_COMMENT_EXCEPTION(401, "댓글 ID를 찾을 수 없습니다.");
 
   private final int status;
 
