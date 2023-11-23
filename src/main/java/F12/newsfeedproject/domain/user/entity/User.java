@@ -1,7 +1,10 @@
 package F12.newsfeedproject.domain.user.entity;
 
+import F12.newsfeedproject.domain.user.constant.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,5 +39,9 @@ public class User {
 
   @Column(nullable = false)
   private String userIntroduce;
+
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private UserRole userRole;
 
 }
