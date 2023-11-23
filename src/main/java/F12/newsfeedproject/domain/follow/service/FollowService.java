@@ -22,7 +22,6 @@ public class FollowService {
         return followRepository.save(follow);
     }
 
-    // 팔로우 내역 조회
     public Optional<Follow> findByFollowingAndFollower(User following, User follower) {
         return followRepository.findByFollowingAndFollower(following, follower);
     }
