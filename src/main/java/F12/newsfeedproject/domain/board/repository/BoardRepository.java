@@ -1,7 +1,10 @@
 package F12.newsfeedproject.domain.board.repository;
 
 import F12.newsfeedproject.domain.board.entity.Board;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
+
+  List<Board> findAllByOrderByCreatedDateDesc();
 }
