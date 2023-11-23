@@ -35,7 +35,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     if (jwt != null) {
       jwtManager.validateToken(jwt);
 
-      String memberName = jwtManager.getMemberNameFromToken(jwt);
+      String memberName = jwtManager.getUserNameFromToken(jwt);
 
       try {
         setAuthentication(memberName);

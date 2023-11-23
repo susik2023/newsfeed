@@ -38,14 +38,14 @@ public class JwtManager {
     this.refreshTime = refreshTime;
   }
 
-  public String createAccessToken(String memberName) {
+  public String createAccessToken(String userName) {
     long nowTime = new Date().getTime();
     Date issuedAt = new Date();
     Date expiration = new Date(nowTime + accessTime);
 
     return Jwts.builder()
         .setIssuer(issuer)
-        .setSubject(memberName)
+        .setSubject(userName)
         .setAudience(TokenType.ACCESS.toString())
         .setExpiration(expiration)
         .setIssuedAt(issuedAt)
@@ -53,14 +53,14 @@ public class JwtManager {
         .compact();
   }
 
-  public String createRefreshToken(String memberName) {
+  public String createRefreshToken(String userName) {
     long nowTime = new Date().getTime();
     Date issuedAt = new Date();
     Date expiration = new Date(nowTime + refreshTime);
 
     return Jwts.builder()
         .setIssuer(issuer)
-        .setSubject(memberName)
+        .setSubject(userName)
         .setAudience(TokenType.REFRESH.toString())
         .setExpiration(expiration)
         .setIssuedAt(issuedAt)
@@ -68,7 +68,7 @@ public class JwtManager {
         .compact();
   }
 
-  public String getMemberNameFromToken(String token) {
+  public String getUserNameFromToken(String token) {
     return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody()
         .getSubject();
   }
