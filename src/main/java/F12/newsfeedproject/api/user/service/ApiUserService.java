@@ -88,4 +88,8 @@ public class ApiUserService {
 
     return findUser.getRefreshToken().equals(refreshToken);
   }
+
+  public void logoutUser(Long userId) {
+    userService.logoutUser(userId);
+  }
 }
