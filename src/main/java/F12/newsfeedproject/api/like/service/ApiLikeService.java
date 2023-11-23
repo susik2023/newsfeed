@@ -23,22 +23,18 @@ import org.springframework.stereotype.Service;
 public class ApiLikeService {
 
   private final BoardService boardService;
-  private final UserService userService;
   private final UserBoardLikeService userBoardLikeService;
 
   @Transactional
   public void createLikeBoard(User user, Long boardId) {
     Board board = boardService.findByBoardId(boardId);
 
-    Optional<UserBoardLike> optionalUserBoardLike = userBoardLikeService.findByUserAndBoard(user, board);
-    if (optionalUserBoardLike.isPresent()) {
-      throw new DuplicatedLikeException();
-    }
+    userBoardLikeService.findByUserAndBoard(user, board)
+        .ifPresent(existingLike -> {
+          throw new DuplicatedLikeException();
+        });
 
-    UserBoardLike userBoardLike = UserBoardLike.builder()
-        .board(board)
-        .user(user)
-        .build();
+    UserBoardLike userBoardLike = UserBoardLike.fromUserAndBoard(user, board);
 
     userBoardLikeService.saveUserBoardLike(userBoardLike);
   }
@@ -47,11 +43,9 @@ public class ApiLikeService {
   public void deleteLikeBoard(User user, Long boardId) {
     Board board = boardService.findByBoardId(boardId);
 
-    Optional<UserBoardLike> optionalUserBoardLike = userBoardLikeService.findByUserAndBoard(user, board);
-    if (optionalUserBoardLike.isEmpty()) {
-      throw new NotFoundLikeException();
-    }
+    UserBoardLike optionalUserBoardLike = userBoardLikeService.findByUserAndBoard(user, board)
+        .orElseThrow(NotFoundLikeException::new);
 
-    userBoardLikeService.deleteById(optionalUserBoardLike.get().getUserBoardLikeId());
+    userBoardLikeService.deleteById(optionalUserBoardLike.getUserBoardLikeId());
   }
 }

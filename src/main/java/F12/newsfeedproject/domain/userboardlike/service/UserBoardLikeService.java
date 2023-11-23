@@ -16,18 +16,13 @@ public class UserBoardLikeService {
   private final UserBoardLikeRepository userBoardLikeRepository;
 
   @Transactional
-  public UserBoardLike saveUserBoardLike(UserBoardLike userBoardLike) {
-    return userBoardLikeRepository.save(userBoardLike);
+  public void saveUserBoardLike(UserBoardLike userBoardLike) {
+    userBoardLikeRepository.save(userBoardLike);
   }
 
   @Transactional
   public void deleteById(Long id) {
     userBoardLikeRepository.deleteById(id);
-  }
-
-  public UserBoardLike findByUserBoardLikeId(Long userBoardLikeId) {
-    return userBoardLikeRepository.findById(userBoardLikeId)
-        .orElseThrow(IllegalArgumentException::new);
   }
 
   public Optional<UserBoardLike> findByUserAndBoard(User user, Board board) {

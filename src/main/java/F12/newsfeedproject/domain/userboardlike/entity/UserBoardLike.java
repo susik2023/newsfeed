@@ -34,4 +34,11 @@ public class UserBoardLike {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
+    public static UserBoardLike fromUserAndBoard (User user, Board board) {
+        return UserBoardLike.builder()
+            .user(user)
+            .board(board)
+            .build();
+    }
+
 }
