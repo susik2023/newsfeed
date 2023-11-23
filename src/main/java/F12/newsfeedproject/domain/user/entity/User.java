@@ -44,4 +44,10 @@ public class User {
   @Enumerated(EnumType.STRING)
   private UserRole userRole;
 
+  private String refreshToken;
+
+  public void updateRefreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
+  }
+
 }
