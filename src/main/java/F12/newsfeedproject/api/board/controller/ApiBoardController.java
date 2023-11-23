@@ -1,11 +1,9 @@
 package F12.newsfeedproject.api.board.controller;
 
-import F12.newsfeedproject.api.board.dto.BoardRequestDto;
-import F12.newsfeedproject.api.board.dto.BoardResponseDto;
-import F12.newsfeedproject.api.board.dto.BoardUpdateRequestDto;
+import F12.newsfeedproject.api.board.dto.request.BoardRequestDto;
+import F12.newsfeedproject.api.board.dto.response.BoardResponseDto;
+import F12.newsfeedproject.api.board.dto.request.BoardUpdateRequestDto;
 import F12.newsfeedproject.api.board.service.ApiBoardService;
-import F12.newsfeedproject.domain.board.entity.Board;
-import F12.newsfeedproject.domain.board.service.BoardService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
