@@ -51,10 +51,10 @@ public class Comment {
         this.user = user;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
-        board.getComments().add(this);
-    }
+//    public void setBoard(Board board) {
+//        this.board = board;
+//        board.getComments().add(this);
+//    }
 
     // 서비스 메서드
     public void setCommentContent(String commentContent) {

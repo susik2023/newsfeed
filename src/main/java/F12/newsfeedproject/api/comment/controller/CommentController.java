@@ -4,9 +4,7 @@ import F12.newsfeedproject.api.comment.dto.CommentRequestDTO;
 import F12.newsfeedproject.api.comment.dto.CommentResponseDTO;
 import F12.newsfeedproject.domain.comment.service.CommentService;
 import F12.newsfeedproject.global.security.UserDetailsImpl;
-import java.util.concurrent.RejectedExecutionException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,23 +30,19 @@ public class CommentController {
   }
 
   @PutMapping("/{commentId}")
-  public ResponseEntity<CommonResponseDto> putComment(@PathVariable Long commentId, @RequestBody CommentRequestDTO commentRequestDTO, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-    try {
+  public ResponseEntity<CommentResponseDTO> putComment(@PathVariable Long commentId, @RequestBody CommentRequestDTO commentRequestDTO, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
       CommentResponseDTO responseDTO = commentService.updateComment(commentId, commentRequestDTO, userDetails.getUser());
       return ResponseEntity.ok().body(responseDTO);
-    } catch (RejectedExecutionException | IllegalArgumentException ex) {
-      return ResponseEntity.badRequest().body(new CommonResponseDto(ex.getMessage(), HttpStatus.BAD_REQUEST.value()));
-    }
+
   }
 
 
   @DeleteMapping("/{commentId}")
-  public ResponseEntity<CommonResponseDto> deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-    try {
+  public ResponseEntity<CommentResponseDTO> deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
       commentService.deleteComment(commentId, userDetails.getUser());
-      return ResponseEntity.ok().body(new CommonResponseDto("정상적으로 삭제 되었습니다.", HttpStatus.OK.value()));
-    } catch (RejectedExecutionException | IllegalArgumentException ex) {
-      return ResponseEntity.badRequest().body(new CommonResponseDto(ex.getMessage(), HttpStatus.BAD_REQUEST.value()));
-    }
+      return ResponseEntity.noContent().build();
+
   }
 }

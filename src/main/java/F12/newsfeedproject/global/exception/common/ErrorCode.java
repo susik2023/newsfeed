@@ -1,6 +1,7 @@
 package F12.newsfeedproject.global.exception.common;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
@@ -21,9 +22,12 @@ public enum ErrorCode {
 
   // follow
   NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다."),
-  DUPLICATED_FOLLOW_EXCEPTION(401, "팔로우 내역이 이미 존재합니다.");
+  DUPLICATED_FOLLOW_EXCEPTION(401, "팔로우 내역이 이미 존재합니다."),
 
-  // Board
+
+  // Comment
+  REJECTED_EXCUTION_EXCEPTION(401,"작성자만 수정할 수 있습니다."),
+  NOT_FOUND_COMMENT_EXCEPTION(401,"존재하지 않는 댓글 ID 입니다.");
 
   private final int status;
 

@@ -23,7 +23,7 @@ public class CommentService {
 
         Comment comment = new Comment(dto);
         comment.setUser(user);
-        comment.setBoard(board);
+//        comment.setBoard(board);
         Comment saveComment = commentRepository.save(comment);
 
 
@@ -47,10 +47,10 @@ public class CommentService {
 
     private Comment getUserComment(Long commentId, User user) {
         Comment comment = commentRepository.findById(commentId)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글 ID 입니다."));
+            .orElseThrow(() -> new IllegalArgumentException());
 
         if(!user.getUserId().equals(comment.getUser().getUserId())) {
-            throw new RejectedExecutionException("작성자만 수정할 수 있습니다.");
+            throw new RejectedExecutionException();
         }
         return comment;
     }
