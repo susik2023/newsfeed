@@ -1,7 +1,7 @@
 package F12.newsfeedproject.domain.comment.entity;
 
-import F12.newsfeedproject.api.comment.dto.CommentRequestDTO;
 import F12.newsfeedproject.domain.board.entity.Board;
+import F12.newsfeedproject.domain.common.Timestamped;
 import F12.newsfeedproject.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,13 +16,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comment {
+public class Comment extends Timestamped {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,24 +41,16 @@ public class Comment {
   private Board board;
 
   @Column
+  @CreatedDate
   private LocalDateTime createDate;
 
-  public Comment(CommentRequestDTO dto) {
-    this.commentContent = dto.getCommentContent();
-    this.createDate = LocalDateTime.now();
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-//    public void setBoard(Board board) {
-//        this.board = board;
-//        board.getComments().add(this);
-//    }
-
-  // 서비스 메서드
-  public void setCommentContent(String commentContent) {
+  public void updateCommentContent(String commentContent) {
     this.commentContent = commentContent;
   }
+
+  public static Comment createCommentof(String commentContent, User user, Board board) {
+
+    return Comment.builder().commentContent(commentContent).board(board).user(user).build();
+  }
+
 }

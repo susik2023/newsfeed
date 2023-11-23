@@ -3,10 +3,7 @@ package F12.newsfeedproject.api.comment.controller;
 import F12.newsfeedproject.api.comment.dto.CommentRequestDTO;
 import F12.newsfeedproject.api.comment.dto.CommentResponseDTO;
 import F12.newsfeedproject.api.comment.service.ApiCommentService;
-import F12.newsfeedproject.domain.comment.entity.Comment;
-import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.global.security.UserDetailsImpl;
-import java.util.concurrent.RejectedExecutionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/comments")
 @RestController
 @RequiredArgsConstructor
-public class CommentController {
+public class ApiCommentController {
 
-  private final ApiCommentService commentService;
+  private final ApiCommentService apiCommentService;
 
   @PostMapping
   public ResponseEntity<CommentResponseDTO> postComment(
       @RequestBody CommentRequestDTO commentRequestDTO,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
-    CommentResponseDTO responseDTO = commentService.createComment(commentRequestDTO,
+    CommentResponseDTO responseDTO = apiCommentService.createComment(commentRequestDTO,
         userDetails.getUser());
 
     return ResponseEntity.status(201).body(responseDTO);
@@ -40,7 +37,7 @@ public class CommentController {
       @RequestBody CommentRequestDTO commentRequestDTO,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-    CommentResponseDTO responseDTO = commentService.updateComment(commentId, commentRequestDTO,
+    CommentResponseDTO responseDTO = apiCommentService.updateComment(commentId, commentRequestDTO,
         userDetails.getUser());
     return ResponseEntity.ok().body(responseDTO);
 
@@ -51,7 +48,7 @@ public class CommentController {
   public ResponseEntity<CommentResponseDTO> deleteComment(@PathVariable Long commentId,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-    commentService.deleteComment(commentId, userDetails.getUser());
+    apiCommentService.deleteComment(commentId, userDetails.getUser());
     return ResponseEntity.noContent().build();
 
   }

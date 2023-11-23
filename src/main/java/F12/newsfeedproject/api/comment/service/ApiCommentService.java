@@ -1,5 +1,7 @@
 package F12.newsfeedproject.api.comment.service;
 
+import static F12.newsfeedproject.domain.comment.entity.Comment.createCommentof;
+
 import F12.newsfeedproject.api.comment.dto.CommentRequestDTO;
 import F12.newsfeedproject.api.comment.dto.CommentResponseDTO;
 import F12.newsfeedproject.domain.board.entity.Board;
@@ -22,11 +24,8 @@ public class ApiCommentService {
 
   @Transactional
   public CommentResponseDTO createComment(CommentRequestDTO dto, User user) {
-    Board board = boardService.findByBoardId(dto.getBoardId());
-
-    Comment comment = new Comment(dto);
-    comment.setUser(user);
-//        comment.setBoard(board);
+    Board board = boardService.findByBoardId(dto.boardId());
+    Comment comment = createCommentof(dto.commentContent(),user,board);
     Comment saveComment = commentRepository.save(comment);
 
     return new CommentResponseDTO(saveComment);
@@ -37,7 +36,7 @@ public class ApiCommentService {
       User user) {
     Comment comment = getUserComment(commentId, user);
     validateAuthorization(user, comment);
-    comment.setCommentContent(commentRequestDTO.getCommentContent());
+    comment.updateCommentContent(commentRequestDTO.commentContent());
 
     return new CommentResponseDTO(comment);
   }
