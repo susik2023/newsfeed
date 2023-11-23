@@ -18,6 +18,7 @@ public enum ErrorCode {
   FAILED_AUTHENTICATION_EXCEPTION(401, "인증에 실패하였습니다."),
   ALREADY_EXIST_USER_NAME_EXCEPTION(409, "이미 존재하는 이름입니다."),
   ALREADY_EXIST_EMAIL_EXCEPTION(409, "이미 존재하는 이메일입니다."),
+  UNAUTHORIZED_MODIFY_EXCEPTION(401, "수정할 권한이 없습니다."),
 
   // follow
   NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다."),

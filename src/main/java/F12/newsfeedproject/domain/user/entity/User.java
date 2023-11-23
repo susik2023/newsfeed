@@ -50,4 +50,8 @@ public class User {
     this.refreshToken = refreshToken;
   }
 
+  public void updateUser(User modifyUser) {
+    userImageUrl = modifyUser.getUserImageUrl();
+    userIntroduce = modifyUser.getUserIntroduce();
+  }
 }
