@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/follow")
+@RequestMapping("/api/users")
 public class ApiFollowController {
 
   private final ApiFollowService apiFollowService;
@@ -26,7 +26,7 @@ public class ApiFollowController {
    * @param followerId
    * @return
    */
-  @PostMapping("/{followerId}")
+  @PostMapping("/{followerId}/follow")
   public ResponseEntity<?> followUser(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
       @PathVariable Long followerId) {
@@ -42,7 +42,7 @@ public class ApiFollowController {
    * @param followerId
    * @return
    */
-  @DeleteMapping("/{followerId}")
+  @DeleteMapping("/{followerId}/follow")
   public ResponseEntity<?> unFollowUser(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
       @PathVariable Long followerId) {
