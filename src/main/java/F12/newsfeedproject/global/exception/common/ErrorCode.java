@@ -23,6 +23,8 @@ public enum ErrorCode {
   NOT_FOUND_FOLLOW_EXCEPTION(401, "팔로우 내역을 찾을 수 없습니다."),
   DUPLICATED_FOLLOW_EXCEPTION(401, "팔로우 내역이 이미 존재합니다.");
 
+  // Board
+
   private final int status;
 
   private final String message;
