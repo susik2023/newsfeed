@@ -38,7 +38,7 @@ public class Comment extends Timestamped {
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "board_id")
+  @JoinColumn(name = "board_id", nullable = false)
   private Board board;
 
   @Column
@@ -53,9 +53,4 @@ public class Comment extends Timestamped {
 
     return Comment.builder().commentContent(commentContent).board(board).user(user).build();
   }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id", nullable = false)
-    private Board board;
-
 }

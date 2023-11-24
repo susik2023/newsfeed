@@ -94,17 +94,17 @@ public class ApiBoardController {
   public ResponseEntity<List<BoardViewResponseDto>> getFollowersBoards(
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
     User user = userDetails.getUser();
-    List<BoardViewResponseDto> BoardViewResponseDto = boardService.getFollowersBoards(
+    List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getFollowersBoards(
         user.getUserId());
 
     return ResponseEntity.ok(BoardViewResponseDto);
   }
 
   @GetMapping("/like-true")
-  public ResponseEntity<List<BoardViewResponseDto>> getlikeBoards(
+  public ResponseEntity<List<BoardViewResponseDto>> getLikeBoards(
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
     User user = userDetails.getUser();
-    List<BoardViewResponseDto> BoardViewResponseDto = boardService.getlikeBoards(user.getUserId());
+    List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getLikeBoards(user.getUserId());
 
     return ResponseEntity.ok(BoardViewResponseDto);
   }

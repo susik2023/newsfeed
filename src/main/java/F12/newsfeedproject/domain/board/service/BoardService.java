@@ -49,6 +49,7 @@ public class BoardService {
   }
   public List<Board> findAllLikeBoards(Long userId) {
     return boardRepository.findAllLikeBoards(userId);
+  }
 
   public Board findByBoardIdWithUser(Long boardId) {
     return boardRepository.findByBoardIdWithUser(boardId).orElseThrow(BoardNotFoundException::new);
