@@ -39,4 +39,10 @@ public class UserService {
   public void updateUser(User findUser, User modifyUser) {
     findUser.updateUser(modifyUser);
   }
+
+  @Transactional
+  public void logoutUser(Long userId) {
+    User findUser = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+    findUser.logout();
+  }
 }
