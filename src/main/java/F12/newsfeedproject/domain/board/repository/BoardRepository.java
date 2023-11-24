@@ -1,7 +1,6 @@
 package F12.newsfeedproject.domain.board.repository;
 
 import F12.newsfeedproject.domain.board.entity.Board;
-import F12.newsfeedproject.domain.user.entity.User;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

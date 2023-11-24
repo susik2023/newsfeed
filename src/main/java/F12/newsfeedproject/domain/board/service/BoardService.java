@@ -2,7 +2,6 @@ package F12.newsfeedproject.domain.board.service;
 
 import F12.newsfeedproject.domain.board.entity.Board;
 import F12.newsfeedproject.domain.board.repository.BoardRepository;
-import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.global.exception.board.BoardNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
