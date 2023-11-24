@@ -3,11 +3,13 @@ package F12.newsfeedproject.api.board.controller;
 import F12.newsfeedproject.api.board.dto.request.BoardRequestDto;
 import F12.newsfeedproject.api.board.dto.request.BoardUpdateRequestDto;
 import F12.newsfeedproject.api.board.dto.response.BoardResponseDto;
+import F12.newsfeedproject.api.board.dto.response.BoardViewResponseDto;
 import F12.newsfeedproject.api.board.service.ApiBoardService;
 import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.global.exception.member.UnAuthorizedModifyException;
 import F12.newsfeedproject.global.security.UserDetailsImpl;
 import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -76,7 +79,7 @@ public class ApiBoardController {
   // 게시글 삭제
   @DeleteMapping("/{boardId}")
   public ResponseEntity<Void> deleteBoard(@PathVariable Long boardId,
-        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
     User user = userDetails.getUser();
     if (!haveModifyAuthorization(user, boardId)) {
@@ -90,6 +93,25 @@ public class ApiBoardController {
   public boolean haveModifyAuthorization(User loginUser, Long boardId) {
     Long authorId = boardService.getAuthorIdByBoardId(boardId);
     return loginUser.getUserId().equals(authorId);
+  }
+
+  @GetMapping("/follow-true")
+  public ResponseEntity<List<BoardViewResponseDto>> getFollowersBoards(
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    User user = userDetails.getUser();
+    List<BoardViewResponseDto> BoardViewResponseDto = boardService.getFollowersBoards(
+        user.getUserId());
+
+    return ResponseEntity.ok(BoardViewResponseDto);
+  }
+
+  @GetMapping("/like-true")
+  public ResponseEntity<List<BoardViewResponseDto>> getlikeBoards(
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    User user = userDetails.getUser();
+    List<BoardViewResponseDto> BoardViewResponseDto = boardService.getlikeBoards(user.getUserId());
+
+    return ResponseEntity.ok(BoardViewResponseDto);
   }
 }
 
