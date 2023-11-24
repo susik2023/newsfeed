@@ -7,6 +7,7 @@ import F12.newsfeedproject.api.board.service.ApiBoardService;
 import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.global.exception.member.UnAuthorizedModifyException;
 import F12.newsfeedproject.global.security.UserDetailsImpl;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class ApiBoardController {
   // 게시글 작성
   @PostMapping
   public ResponseEntity<BoardResponseDto> saveBoard(
-      @RequestBody BoardRequestDto requestDto,
+      @Valid @RequestBody BoardRequestDto requestDto,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
     User loginUser = userDetails.getUser();
@@ -58,7 +59,8 @@ public class ApiBoardController {
   // 게시글 수정
   @PatchMapping("/{boardId}")
   public ResponseEntity<BoardResponseDto> updateBoard(
-      @PathVariable Long boardId, @RequestBody BoardUpdateRequestDto requestDto,
+      @PathVariable Long boardId,
+      @Valid @RequestBody BoardUpdateRequestDto requestDto,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
     User user = userDetails.getUser();
