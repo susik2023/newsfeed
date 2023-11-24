@@ -18,8 +18,8 @@ public class ApiBoardService {
 
   // 게시글 작성
   @Transactional
-  public BoardResponseDto saveBoard(BoardRequestDto requestDto) {
-    Board savedBoard = boardService.saveBoard(requestDto.toEntity());
+  public BoardResponseDto saveBoard(BoardRequestDto requestDto, Long userId) {
+    Board savedBoard = boardService.saveBoard(requestDto.toEntity(userId));
     return BoardResponseDto.from(savedBoard);
   }
 
@@ -46,5 +46,9 @@ public class ApiBoardService {
   // 게시글 삭제
   public void deleteBoard(Long boardId) {
     boardService.deleteBoard(boardId);
+  }
+
+  public Long getAuthorIdByBoardId(Long boardId) {
+    return boardService.getAuthorIdByBoardId(boardId);
   }
 }
