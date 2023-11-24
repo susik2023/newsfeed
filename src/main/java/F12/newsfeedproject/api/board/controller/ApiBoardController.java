@@ -3,6 +3,7 @@ package F12.newsfeedproject.api.board.controller;
 import F12.newsfeedproject.api.board.dto.request.BoardRequestDto;
 import F12.newsfeedproject.api.board.dto.request.BoardUpdateRequestDto;
 import F12.newsfeedproject.api.board.dto.response.BoardResponseDto;
+import F12.newsfeedproject.api.board.dto.response.BoardViewResponseDto;
 import F12.newsfeedproject.api.board.service.ApiBoardService;
 import F12.newsfeedproject.domain.user.entity.User;
 import F12.newsfeedproject.global.exception.member.UnAuthorizedModifyException;
@@ -87,6 +88,25 @@ public class ApiBoardController {
   public boolean haveModifyAuthorization(User loginUser, Long boardId) {
     Long authorId = apiBoardService.getAuthorIdByBoardId(boardId);
     return loginUser.getUserId().equals(authorId);
+  }
+
+  @GetMapping("/follow-true")
+  public ResponseEntity<List<BoardViewResponseDto>> getFollowersBoards(
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    User user = userDetails.getUser();
+    List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getFollowersBoards(
+        user.getUserId());
+
+    return ResponseEntity.ok(BoardViewResponseDto);
+  }
+
+  @GetMapping("/like-true")
+  public ResponseEntity<List<BoardViewResponseDto>> getLikeBoards(
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    User user = userDetails.getUser();
+    List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getLikeBoards(user.getUserId());
+
+    return ResponseEntity.ok(BoardViewResponseDto);
   }
 }
 

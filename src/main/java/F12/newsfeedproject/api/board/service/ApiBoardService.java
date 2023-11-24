@@ -1,11 +1,13 @@
 package F12.newsfeedproject.api.board.service;
 
 import F12.newsfeedproject.api.board.dto.request.BoardRequestDto;
-import F12.newsfeedproject.api.board.dto.response.BoardResponseDto;
 import F12.newsfeedproject.api.board.dto.request.BoardUpdateRequestDto;
+import F12.newsfeedproject.api.board.dto.response.BoardResponseDto;
+import F12.newsfeedproject.api.board.dto.response.BoardViewResponseDto;
 import F12.newsfeedproject.domain.board.entity.Board;
 import F12.newsfeedproject.domain.board.service.BoardService;
 import F12.newsfeedproject.domain.user.entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -54,4 +56,19 @@ public class ApiBoardService {
   public Long getAuthorIdByBoardId(Long boardId) {
     return boardService.getAuthorIdByBoardId(boardId);
   }
+
+  public List<BoardViewResponseDto> getFollowersBoards(Long userId) {
+    return boardService.findAllUserFollowerBoard(userId).stream()
+        .map(BoardViewResponseDto::from).collect(Collectors.toList());
+  }
+
+  public List<BoardViewResponseDto> getLikeBoards(Long userId) {
+    List<Board> boards = boardService.findAllLikeBoards(userId);
+    List<BoardViewResponseDto> boardViewResponseDto = new ArrayList<>();
+    for (Board board : boards) {
+      boardViewResponseDto.add(BoardViewResponseDto.from(board));
+    }
+    return boardViewResponseDto;
+  }
+
 }
