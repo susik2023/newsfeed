@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/boards")
 public class ApiBoardController {
 
-  private final ApiBoardService boardService;
+  private final ApiBoardService apiBoardService;
 
   // 게시글 작성
   @PostMapping
@@ -37,27 +37,24 @@ public class ApiBoardController {
       @RequestBody BoardRequestDto requestDto,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-    if (userDetails != null) {
-      Long userId = userDetails.getUser().getUserId();
+    User loginUser = userDetails.getUser();
 
-      BoardResponseDto responseDto = boardService.saveBoard(requestDto, userId);
-      return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
-    } else {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
+    BoardResponseDto responseDto = apiBoardService.saveBoard(requestDto, loginUser);
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
   }
 
   // 게시글 단건 조회
   @GetMapping("/{boardId}")
   public ResponseEntity<BoardResponseDto> getBoard(@PathVariable Long boardId) {
-    BoardResponseDto responseDto = boardService.getBoard(boardId);
+    BoardResponseDto responseDto = apiBoardService.getBoard(boardId);
     return ResponseEntity.ok(responseDto);
   }
 
   // 게시글 전체 목록 조회
   @GetMapping
   public ResponseEntity<List<BoardResponseDto>> getBoards() {
-    List<BoardResponseDto> responseDto = boardService.getBoards();
+    List<BoardResponseDto> responseDto = apiBoardService.getBoards();
     return ResponseEntity.ok(responseDto);
   }
 
@@ -72,7 +69,7 @@ public class ApiBoardController {
       throw new UnAuthorizedModifyException();
     }
 
-    BoardResponseDto responseDto = boardService.updateBoard(boardId, requestDto);
+    BoardResponseDto responseDto = apiBoardService.updateBoard(boardId, requestDto);
     return ResponseEntity.ok(responseDto);
   }
 
@@ -86,12 +83,12 @@ public class ApiBoardController {
       throw new UnAuthorizedModifyException();
     }
 
-    boardService.deleteBoard(boardId);
+    apiBoardService.deleteBoard(boardId);
     return ResponseEntity.noContent().build();
   }
 
   public boolean haveModifyAuthorization(User loginUser, Long boardId) {
-    Long authorId = boardService.getAuthorIdByBoardId(boardId);
+    Long authorId = apiBoardService.getAuthorIdByBoardId(boardId);
     return loginUser.getUserId().equals(authorId);
   }
 

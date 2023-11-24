@@ -41,7 +41,7 @@ public class BoardService {
   }
 
   public Long getAuthorIdByBoardId(Long boardId) {
-    Board board = boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
+    Board board = boardRepository.findByBoardIdWithUser(boardId).orElseThrow(BoardNotFoundException::new);
     return board.getUser().getUserId();
   }
 
@@ -50,6 +50,9 @@ public class BoardService {
   }
   public List<Board> findAllLikeBoards(Long userId) {
     return boardRepository.findAllLikeBoards(userId);
+
+  public Board findByBoardIdWithUser(Long boardId) {
+    return boardRepository.findByBoardIdWithUser(boardId).orElseThrow(BoardNotFoundException::new);
   }
 }
 
