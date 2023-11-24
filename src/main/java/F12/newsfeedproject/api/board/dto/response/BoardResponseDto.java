@@ -7,17 +7,19 @@ public record BoardResponseDto(
     Long boardId,
     String boardTitle,
     String boardContent,
+    String userName,
     LocalDateTime createdDate,
     LocalDateTime modifiedDate
 ) {
 
-  public static BoardResponseDto from(Board saveBoard) {
+  public static BoardResponseDto from(Board board) {
     return new BoardResponseDto(
-        saveBoard.getBoardId(),
-        saveBoard.getBoardTitle(),
-        saveBoard.getBoardContent(),
-        saveBoard.getCreatedDate(),
-        saveBoard.getModifiedDate()
+        board.getBoardId(),
+        board.getBoardTitle(),
+        board.getBoardContent(),
+        board.getUser().getUserName(),
+        board.getCreatedDate(),
+        board.getModifiedDate()
     );
   }
 }
