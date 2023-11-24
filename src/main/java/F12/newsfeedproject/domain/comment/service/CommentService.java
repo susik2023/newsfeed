@@ -1,9 +1,9 @@
 package F12.newsfeedproject.domain.comment.service;
 
-import F12.newsfeedproject.domain.comment.entity.Comment;
-import F12.newsfeedproject.domain.comment.repository.CommentRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+    import F12.newsfeedproject.domain.comment.entity.Comment;
+    import F12.newsfeedproject.domain.comment.repository.CommentRepository;
+    import lombok.RequiredArgsConstructor;
+    import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
