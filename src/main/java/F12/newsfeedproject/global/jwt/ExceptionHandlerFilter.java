@@ -6,6 +6,7 @@ import F12.newsfeedproject.global.exception.jwt.ExpiredJwtTokenException;
 import F12.newsfeedproject.global.exception.jwt.FailedAuthenticationException;
 import F12.newsfeedproject.global.exception.jwt.InvalidJwtSignatureException;
 import F12.newsfeedproject.global.exception.jwt.InvalidJwtTokenException;
+import F12.newsfeedproject.global.exception.jwt.NoJwtException;
 import F12.newsfeedproject.global.exception.jwt.UnsupportedJwtTokenException;
 import F12.newsfeedproject.global.util.StackTracePrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +32,8 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
     try {
       filterChain.doFilter(request, response);
-    } catch (InvalidJwtSignatureException | ExpiredJwtTokenException | UnsupportedJwtTokenException | InvalidJwtTokenException | FailedAuthenticationException e) {
+    } catch (InvalidJwtSignatureException | ExpiredJwtTokenException | UnsupportedJwtTokenException
+        | InvalidJwtTokenException | FailedAuthenticationException | NoJwtException e) {
       sendErrorMessage(response, e);
     }
   }
