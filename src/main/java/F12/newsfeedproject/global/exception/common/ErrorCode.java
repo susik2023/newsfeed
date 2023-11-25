@@ -1,7 +1,6 @@
 package F12.newsfeedproject.global.exception.common;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
@@ -13,6 +12,7 @@ public enum ErrorCode {
   INVALID_JWT_TOKEN_EXCEPTION(401, "JWT 토큰이 잘못되었습니다"),
   NOT_REFRESH_TOKEN_EXCEPTION(401, "Refresh Token이 아닙니다."),
   NOT_MISMATCHED_REFRESH_TOKEN_EXCEPTION(401, "DB의 리프레쉬 토큰 값과 다릅니다."),
+  NO_JWT_EXCEPTION(401, "이 요청은 JWT가 필요합니다."),
 
   // 회원
   NOT_FOUND_MEMBER_EXCEPTION(401, "회원 정보를 찾을 수 없습니다."),

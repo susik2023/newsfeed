@@ -1,6 +1,7 @@
 package F12.newsfeedproject.global.jwt;
 
 import F12.newsfeedproject.global.exception.jwt.FailedAuthenticationException;
+import F12.newsfeedproject.global.exception.jwt.NoJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
+  private static final String[] WHITE_LIST = {"/api/users/signup", "/api/users/login"};
+
   private final JwtManager jwtManager;
   private final UserDetailsService userDetailsService;
 
@@ -28,9 +31,11 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res,
       FilterChain filterChain) throws ServletException, IOException {
 
-    // TODO null이 아니라 다른 방법으로 변경
     String jwt = JwtUtil.getTokenFromRequest(req);
-    log.info(jwt);
+
+    if (jwt == null && !isWhiteListUrl(req.getRequestURL())){
+      throw new NoJwtException();
+    }
 
     if (jwt != null) {
       jwtManager.validateToken(jwt);
@@ -48,6 +53,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
   }
 
   public void setAuthentication(String username) {
+
     SecurityContext context = SecurityContextHolder.createEmptyContext();
     Authentication authentication = createAuthentication(username);
     context.setAuthentication(authentication);
@@ -56,7 +62,19 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
   }
 
   private Authentication createAuthentication(String username) {
+
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
     return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+  }
+
+  private static boolean isWhiteListUrl(StringBuffer requestUrlBuffer) {
+
+    String requestUrl = requestUrlBuffer.toString();
+    for (String whiteUrl : WHITE_LIST) {
+      if (requestUrl.contains(whiteUrl)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
