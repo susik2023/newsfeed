@@ -97,7 +97,7 @@ public class ApiBoardController {
   @GetMapping("/follow-true")
   public ResponseEntity<List<BoardViewResponseDto>> getFollowersBoards(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
-      @PageableDefault(size = 10, sort = "createdDate") Pageable pageable
+      @PageableDefault(sort = "createdDate") Pageable pageable
   ) {
     User user = userDetails.getUser();
     List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getFollowersBoards(
@@ -109,7 +109,7 @@ public class ApiBoardController {
   @GetMapping("/like-true")
   public ResponseEntity<List<BoardViewResponseDto>> getLikeBoards(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
-      @PageableDefault(size = 10, sort = "createdDate") Pageable pageable) {
+      @PageableDefault(sort = "createdDate") Pageable pageable) {
     User user = userDetails.getUser();
     List<BoardViewResponseDto> BoardViewResponseDto = apiBoardService.getLikeBoards(
         user.getUserId(), pageable);
