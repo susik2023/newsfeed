@@ -23,3 +23,8 @@
 
 
 ## API 명세서
+![image](https://github.com/F12-DevTools/news-feed-project/assets/40788498/90c1f984-84bd-41f1-b365-d290b7c3abe2)
+![image](https://github.com/F12-DevTools/news-feed-project/assets/40788498/d434f0b0-6eab-438b-ae66-a4daa1737aa5)
+![image](https://github.com/F12-DevTools/news-feed-project/assets/40788498/9e22d97a-1e9a-4f42-88d1-a2d7b6174c99)
+![image](https://github.com/F12-DevTools/news-feed-project/assets/40788498/806afeb5-4958-4693-a86e-98b5f2c86aae)
+![image](https://github.com/F12-DevTools/news-feed-project/assets/40788498/250f7afa-f42f-4447-bafc-7ee65e1b84d9)
