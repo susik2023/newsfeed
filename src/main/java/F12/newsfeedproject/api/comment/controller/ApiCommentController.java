@@ -4,6 +4,7 @@ import F12.newsfeedproject.api.comment.dto.CommentRequestDTO;
 import F12.newsfeedproject.api.comment.dto.CommentResponseDTO;
 import F12.newsfeedproject.api.comment.service.ApiCommentService;
 import F12.newsfeedproject.global.security.UserDetailsImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,7 +25,7 @@ public class ApiCommentController {
 
   @PostMapping
   public ResponseEntity<CommentResponseDTO> postComment(
-      @RequestBody CommentRequestDTO commentRequestDTO,
+      @Valid @RequestBody CommentRequestDTO commentRequestDTO,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
     CommentResponseDTO responseDTO = apiCommentService.createComment(commentRequestDTO,
         userDetails.getUser());
@@ -34,7 +35,7 @@ public class ApiCommentController {
 
   @PatchMapping("/{commentId}")
   public ResponseEntity<CommentResponseDTO> updateComment(@PathVariable Long commentId,
-      @RequestBody CommentRequestDTO commentRequestDTO,
+      @Valid @RequestBody CommentRequestDTO commentRequestDTO,
       @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
     CommentResponseDTO responseDTO = apiCommentService.updateComment(commentId, commentRequestDTO,
